@@ -1,0 +1,19 @@
+{% extends "thirdbase.html" %}
+{% load static %}
+
+{% block page_content %}
+<div class="grid-container">
+	<div class="contain">    
+    	<img class="img" src="{{url}}" alt="IMAGE LOAD FAILED" style="width: 100%">
+		<div class="tagcontain">
+		<span class='hashhead'>Tags:</span>
+		{% for i in title %}
+			<span class="hash">{{ i.imgtag.tag }}</span>
+		{% endfor %}
+		</div>    
+	</div>
+	<div class="meta">
+		<h1>Views: {{views}}</h1>
+	</div>
+</div>
+{% endblock %}

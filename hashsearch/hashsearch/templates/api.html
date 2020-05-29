@@ -1,0 +1,241 @@
+{% load static %}
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/main2.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
+      <link href="{% static 'css/test.css' %}" rel="stylesheet" />  
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <title>API Documentation
+</title>
+    <style type="text/css">
+      .navbar .navbar-brand b{
+    font-weight: bold;
+    color: #39ff14;
+  }
+
+    .code{
+        margin:60px 5%;
+        background-color: rgb(54, 54, 54);
+        color: white;
+        padding: 10px 30px 10px 20px;
+        text-align: left;
+        font-size: 25px;
+    }
+    code{
+        color: rgb(255, 213, 213);
+    }
+    
+    </style>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+   
+  </head>
+  <body style="background-color: #dddddd;">
+    <nav class="navbar navbar-expand-md navbar-light bg-dark fixed-top">
+ 
+<a href="{% url 'home_feed' %}" class="navbar-brand" style="font-family: poppins; color: white;">HashTag<b>Searcher</b></a>
+ 
+<button type="button" class="navbar-toggler bg-light" data-toggle="collapse" data-target="#nav">
+ 
+<span class="navbar-toggler-icon"></span>
+ 
+</button>
+ 
+<div class="collapse navbar-collapse justify-content-between" id="nav">
+ 
+<ul class="navbar-nav mr-auto">
+ 
+<li class="nav-item" >
+ 
+<a class="nav-link text-light font-weight-bold px-3" href="{% url 'home_feed' %}">HOME</a>
+ 
+</li>
+ 
+<li class="nav-item">
+ 
+<a class="nav-link text-light font-weight-bold px-3" href="#">ABOUT</a>
+ 
+</li>
+ 
+<li class="nav-item">
+ 
+<a class="nav-link text-light font-weight-bold px-3" href="#">CONTACT</a>
+ 
+</li>
+</ul>
+<ul class="navbar-nav">
+<li class="nav-item "><a href="#" class="nav-link text-light font-weight-bold px-3 fa fa-facebook" style="color: white;float: right;"></a></li>
+      <li class="nav-item "><a href="#" class="nav-link text-light font-weight-bold px-3 fa fa-twitter"style="color: white;float: right;"></a></li>
+      <li class="nav-item "><a href="#" class="nav-link text-light font-weight-bold px-3 fa fa-instagram"style="color: white; float: right;"></a></li>
+
+</ul> 
+
+</div>
+ 
+</nav>
+    <div class="s130" style="background-image: url('https://cdn.pixabay.com/photo/2017/06/13/12/30/kackars-2398709_1280.jpg');" >
+      <form action="hsearch" method="get">
+        <div class="inner-form" >
+          <div class="input-field first-wrap">
+            <div class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+              </svg>
+            </div>
+            <input id="search" type="text" name="query" value="" placeholder="What are you looking for?" required />
+          </div>
+          <div class="input-field second-wrap">
+            <button class="btn-search" type="submit">SEARCH</button>
+          </div>
+        </div>
+        <span class='info'>TRENDING HASHES:</span>
+        {% for i in trendingtags %}
+        <span class="info">{{i.tag}}</span>
+        {% endfor %}
+      </form>
+    </div>
+    <div style="padding-top: 0px; font-family: Ubuntu;">
+        <div class="container" style="text-align: center;margin-bottom: 160px;"><h1 style="margin-bottom: 60px; margin-top: 40px;">API Documentation</h1>
+        <h3 style="margin-bottom: 60px;">Use our hashtag search API to get urls of images across popular social media sites.
+
+            Our API will return you a pure JSON response of direct image urls.</h3>
+        <div><h2>HOW TO USE OUR API ?</h2></div>
+        <h4 style="margin-top: 50px;"> Query string = "http://i-search.ml/api?q={Your_Query_String_goes_here)}" <br>
+
+            <br>Access method "GET"<br><br>
+            
+            Parameters : q = The query tag on the images you need<br>
+            
+            Example code to get images related to flowers : "http://i-search.ml/api?q=flowers"<br></h4>
+        <div><h2 style="margin-top: 60px;">How to Implement on your code :</h2></div>
+            
+            <div class="code"><h3>1] Python :</h3><br><code>import http.client<br>
+
+                conn = http.client.HTTPConnection("i-search.ml")<br>
+                
+                headers = {<br>
+                    'cache-control': "no-cache",<br>
+                    'postman-token': "043ba463-49eb-6678-0300-32e0cbe1a1c1"<br>
+                    }<br>
+                
+                conn.request("GET", "/api?q=flowers", headers=headers)<br>
+                
+                res = conn.getresponse()<br>
+                data = res.read()<br>
+                
+                print(data.decode("utf-8"))<br></code></div>
+
+
+
+                <div class="code"><h3>2] Javascript using XHR : </h3><br><code>
+                    var data = null;<br>
+
+                    var xhr = new XMLHttpRequest();<br>
+                    xhr.withCredentials = true;<br>
+
+                    xhr.addEventListener("readystatechange", function () {<br>
+                    if (this.readyState === 4) {<br>
+                        console.log(this.responseText);<br>
+                    }<br>
+                    });<br>
+
+                    xhr.open("GET", "http://i-search.ml/api?q=flowers");<br>
+                    xhr.setRequestHeader("cache-control", "no-cache");<br>
+                    xhr.setRequestHeader("postman-token", "e0abd5d6-4ba5-8ff7-77b6-002f25412a97");<br>
+
+                    xhr.send(data);<br>
+                    <br></code></div>
+
+
+                <div class="code"><h3>3] NodeJS :</h3><br><code>
+                    var http = require("http");<br>
+
+                        var options = {<br><br>
+                        "method": "GET",<br>
+                        "hostname": "i-search.ml",<br>
+                        "port": null,<br>
+                        "path": "/api?q=flowers",<br>
+                        "headers": {<br>
+                            "cache-control": "no-cache",<br>
+                            "postman-token": "4e87e97a-7965-46d9-8acc-3efe0d54f996"<br>
+                        }<br>
+                        };<br>
+
+                        var req = http.request(options, function (res) {<br>
+                        var chunks = [];<br>
+
+                        res.on("data", function (chunk) {<br>
+                            chunks.push(chunk);<br>
+                        });<br>
+
+                        res.on("end", function () {<br>
+                            var body = Buffer.concat(chunks);<br>
+                            console.log(body.toString());<br>
+                        });<br>
+                        });<br>
+
+                        req.end();
+                <br></code></div>
+
+
+                <div class="code"><h3>4] PHP curl :</h3><br><code>
+                    $curl = curl_init();<br>
+
+                    curl_setopt_array($curl, array(<br>
+                    CURLOPT_URL => "http://i-search.ml/api?q=flowers",<br>
+                    CURLOPT_RETURNTRANSFER => true,<br>
+                    CURLOPT_ENCODING => "",<br>
+                    CURLOPT_MAXREDIRS => 10,<br>
+                    CURLOPT_TIMEOUT => 30,<br>
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,<br>
+                    CURLOPT_CUSTOMREQUEST => "GET",<br>
+                    CURLOPT_HTTPHEADER => array(<br>
+                        "cache-control: no-cache",<br>
+                        "postman-token: a9b8f029-9063-fff8-0545-ab7a89431d93"<br>
+                    ),<br>
+                    ));<br>
+
+                    $response = curl_exec($curl);<br>
+                    $err = curl_error($curl);<br>
+
+                    curl_close($curl);<br>
+
+                    if ($err) {<br>
+                    echo "cURL Error #:" . $err;<br>
+                    } else {<br>
+                    echo $response;<br>
+                    }
+                    <br></code></div>
+
+                <div class="code"><h3>5] Java :</h3><br><code>
+                    OkHttpClient client = new OkHttpClient();<br>
+
+                    Request request = new Request.Builder()<br>
+                    .url("http://i-search.ml/api?q=flowers")<br>
+                    .get()<br>
+                    .addHeader("cache-control", "no-cache")<br>
+                    .addHeader("postman-token", "f25fa13a-1180-029c-1fd1-183619c5af8d")<br>
+                    .build();<br>
+
+                    Response response = client.newCall(request).execute();<br>
+                    <br></code></div>
+
+        </div>
+    </div>
+    <div id="navbar-b">
+      <a href="javascript:void(0)">&copy; Copyright Team - 29</a>
+      <a href="javascript:void(0)">About-Us</a>
+      <a href="javascript:void(0)">FAQ</a>
+      <a class="active" href="http://i-search.ml/apidoc">API</a>
+    </div>
+    <script src="{% static 'js/extention/choices.js' %}"></script>
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<h1 style="text-align: center;">TRENDING</h1>
+<ul id="rig">
+
+{% for feed_element in feed_elements %}
+    <li>
+        <form class="rig-cell" action="update_db" method=GET>
+            <input class="rig-image" type='image' src='{{ feed_element.imageurl }}' name='image' style="width: 100%;">
+            <input type=text hidden name="url" value="{{ feed_element.imageurl }}">
+            <input type=text hidden name="fullimage" value="{{ feed_element.fullimage }}">
+            
+            <div class="rig-overlay" style="width: 100px;max-height: 80px; background-color: #000"></div>
+            <span class="rig-text">Views: {{feed_element.views}}</span>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
